@@ -16,13 +16,13 @@ class Api::V1::UsersController < ApplicationController
     end
   
     def create
-        @user = User.create(user_params)
-        if @user.valid?
-            @token = issue_token(@user)
-            render json: { user: UserSerializer.new(@user), token: @token }, status: :created
-        else
-            render json: { errors: @user.errors.full_messages }, status: :not_acceptable
-        end
+      @user = User.create(user_params)
+      if @user.valid?
+          @token = issue_token(@user)
+          render json: { user: UserSerializer.new(@user), token: @token }, status: :created
+      else
+          render json: { errors: @user.errors.full_messages }, status: :not_acceptable
+      end
     end
 
     def edit
