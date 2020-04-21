@@ -25,10 +25,10 @@ class Api::V1::MapEventsController < ApplicationController
     
     def map_event_params
         params.require(:map_event)
-        .permit(:title, 
-                :address, 
-                :latitude, 
-                :longitude)
+        .permit(:latitude,
+            :longitude,
+            :title, 
+            :address)
     end 
 
     def query_params

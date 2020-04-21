@@ -12,9 +12,9 @@ end
 end
 
 3.times do
-    Comment.create(content: Faker::Quote.singular_siegler, user_id: User.all.sample, map_event_id: MapEvent.all.sample)
+    Comment.create(content: Faker::Quote.singular_siegler, user_id: User.all.sample.id, map_event_id: MapEvent.all.sample.id)
 end
 
 3.times do
-    UserEvent.create(user_id: User.all.sample, map_event_id: MapEvent.all.sample)
+    UserEvent.create(user_id: User.all.sample.id, map_event_id: MapEvent.all.sample.id)
 end
