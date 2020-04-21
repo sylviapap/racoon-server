@@ -1,0 +1,2 @@
+class MapEvent < ApplicationRecord
+end

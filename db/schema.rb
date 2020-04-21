@@ -10,10 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_20_224804) do
+ActiveRecord::Schema.define(version: 2020_04_21_174922) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.string "content"
+    t.bigint "user_id", null: false
+    t.bigint "map_event_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["map_event_id"], name: "index_comments_on_map_event_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "map_events", force: :cascade do |t|
+    t.float "latitude"
+    t.float "longitude"
+    t.string "title"
+    t.string "address"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "user_events", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "map_event_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["map_event_id"], name: "index_user_events_on_map_event_id"
+    t.index ["user_id"], name: "index_user_events_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
@@ -23,4 +51,8 @@ ActiveRecord::Schema.define(version: 2020_04_20_224804) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "comments", "map_events"
+  add_foreign_key "comments", "users"
+  add_foreign_key "user_events", "map_events"
+  add_foreign_key "user_events", "users"
 end
