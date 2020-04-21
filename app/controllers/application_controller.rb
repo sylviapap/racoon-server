@@ -1,12 +1,12 @@
 class ApplicationController < ActionController::API
-    before_action :authorized
+    # before_action :authorized
     
-    def issue_token(@user)
-        JWT.encode({user_id: @user.id}, "secret", 'HS256')
+    def issue_token(user)
+        JWT.encode({user_id: user.id}, "secret", 'HS256')
     end
     
     def current_user
-        @user ||= User.find_by(id: user_id)
+        user ||= User.find_by(id: user_id)
     end
 
     def token

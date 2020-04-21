@@ -1,6 +1,6 @@
 class Api::V1::UsersController < ApplicationController
     before_action :find_user, only: [:update, :show, :destroy]
-    skip_before_action :authorized, only: [:create]
+    # skip_before_action :authorized, only: [:create]
 
     def index
       @users = User.all
@@ -8,8 +8,8 @@ class Api::V1::UsersController < ApplicationController
     end
 
     def show
-        @user = User.find(params[:id])
-        render json: @user
+      @user = User.find(params[:id])
+      render json: @user
     end
   
     def new
@@ -18,10 +18,10 @@ class Api::V1::UsersController < ApplicationController
     def create
       @user = User.create(user_params)
       if @user.valid?
-          @token = issue_token(@user)
-          render json: { user: UserSerializer.new(@user), token: @token }, status: :created
+        @token = issue_token(@user)
+        render json: { user: UserSerializer.new(@user), token: @token }, status: :created
       else
-          render json: { errors: @user.errors.full_messages }, status: :not_acceptable
+        render json: { errors: @user.errors.full_messages }, status: :not_acceptable
       end
     end
 
