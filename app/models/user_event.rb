@@ -1,4 +1,4 @@
-class UserEvent < ApplicationRecord
+class UserMarker < ApplicationRecord
   belongs_to :user
-  belongs_to :map_event
+  belongs_to :map_marker
 end

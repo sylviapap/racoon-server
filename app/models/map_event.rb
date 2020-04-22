@@ -1,5 +1,5 @@
-class MapEvent < ApplicationRecord
-    has_many :user_events
+class MapMarker < ApplicationRecord
+    has_many :user_markers
     has_many :comments
-    has_many :users, through: :user_events
+    has_many :users, through: :user_markers
 end

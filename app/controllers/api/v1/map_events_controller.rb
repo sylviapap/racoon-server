@@ -1,30 +1,30 @@
-class Api::V1::MapEventsController < ApplicationController
-    
+class Api::V1::MapMarkersController < ApplicationController
+
     def index
-        map_events = MapEvent.all
-        render json: map_events
+        map_markers = MapMarker.all
+        render json: map_markers
     end 
 
     def show
-        map_event = MapEvent.find(params[:id])
-        render json: map_event, :include => [:users, :comments  => {:include => :user }]
+        map_marker = MapMarker.find(params[:id])
+        render json: map_marker, :include => [:users, :comments  => {:include => :user }]
     end 
 
     def create
-        map_event = MapEvent.create(map_event_params)
-        render json: map_event
+        map_marker = MapMarker.create(map_marker_params)
+        render json: map_marker
     end 
 
     def update
-        map_event = MapEvent.find(params[:id])
-        map_event.update(map_event_params)
-        render json: map_event, :include => [:users => {:include => :map_events}]
+        map_marker = MapMarker.find(params[:id])
+        map_marker.update(map_marker_params)
+        render json: map_marker, :include => [:users => {:include => :map_markers}]
     end
 
     private
     
-    def map_event_params
-        params.require(:map_event)
+    def map_marker_params
+        params.require(:map_marker)
         .permit(:latitude,
             :longitude,
             :title, 

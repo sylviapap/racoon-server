@@ -1,29 +1,29 @@
-class Api::V1::UserEventsController < ApplicationController
+class Api::V1::UserMarkersController < ApplicationController
     def index
-        user_events = UserEvent.where(params[:user_id])
-        render json: user_events
+        user_markers = UserMarker.where(params[:user_id])
+        render json: user_markers
     end 
 
     def show
-        user_event = UserEvent.find(params[:id])
+        user_marker = UserMarker.find(params[:id])
     end 
 
     def create
-        user_event = UserEvent.create(user_event_params)
-        map_event = user_event.map_event
-        user = user_event.user
-        map_events = user.map_events
+        user_marker = UserMarker.create(user_marker_params)
+        map_marker = user_marker.map_marker
+        user = user_marker.user
+        map_markers = user.map_markers
 
-        if user_event.valid?
-            render json: user_event, :include => [:user => {:include => :map_events}]
+        if user_marker.valid?
+            render json: user_marker, :include => [:user => {:include => :map_markers}]
         else
-            render json: { error: 'failed to add event' }, status: :not_acceptable
+            render json: { error: 'failed to add marker' }, status: :not_acceptable
         end
     end 
 
     private
 
-    def user_event_params
-        params.require(:user_event).permit(:user_id, :map_event_id)
+    def user_marker_params
+        params.require(:user_marker).permit(:user_id, :map_marker_id)
     end 
 end

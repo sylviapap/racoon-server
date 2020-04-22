@@ -1,5 +1,5 @@
 class CommentSerializer < ActiveModel::Serializer
   attributes :id, :content
   belongs_to :user
-  belongs_to :map_event
+  belongs_to :map_marker
 end

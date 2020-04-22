@@ -1,5 +1,5 @@
-class UserEventSerializer < ActiveModel::Serializer
+class UserMarkerSerializer < ActiveModel::Serializer
   attributes :id
   belongs_to :user
-  belongs_to :map_event
+  belongs_to :map_marker
 end

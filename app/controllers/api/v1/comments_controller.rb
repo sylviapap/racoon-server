@@ -21,7 +21,7 @@ class Api::V1::CommentsController < ApplicationController
     private
 
     def comment_params
-        params.require(:comment).permit(:content, :user_id, :map_event_id)
+        params.require(:comment).permit(:content, :user_id, :map_marker_id)
     end 
 
     def find_comment

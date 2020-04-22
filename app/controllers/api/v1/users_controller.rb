@@ -3,7 +3,7 @@ class Api::V1::UsersController < ApplicationController
     # skip_before_action :authorized, only: [:create]
 
     def profile
-      render json: { user: UserSerializer.new(current_user, :include => [:map_events]) }, status: :accepted
+      render json: { user: UserSerializer.new(current_user, :include => [:map_markers]) }, status: :accepted
     end
 
     def index
