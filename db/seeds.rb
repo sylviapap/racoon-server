@@ -8,11 +8,11 @@ Comment.destroy_all
 end
 
 10.times do
-    MapMarker.create(latitude: Faker::Address.latitude, longitude: Faker::Address.longitude, address: Faker::Address.street_address, title: Faker::Address.community)
+    MapMarker.create(latitude: Faker::Address.latitude, longitude: Faker::Address.longitude, address: Faker::Address.street_address, title: Faker::Subscription.status)
 end
 
 10.times do
-    Comment.create(content: Faker::Quote.singular_siegler, user_id: User.all.sample.id, map_marker_id: MapMarker.all.sample.id)
+    Comment.create(content: Faker::Quote.yoda, user_id: User.all.sample.id, map_marker_id: MapMarker.all.sample.id)
 end
 
 5.times do
