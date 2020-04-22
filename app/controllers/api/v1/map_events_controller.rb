@@ -1,5 +1,5 @@
 class Api::V1::MapEventsController < ApplicationController
-    before_action :find_event, only: [:show, :update]
+    before_action :find_map_event
 
     def index
         map_events = MapEvent.all
@@ -7,7 +7,7 @@ class Api::V1::MapEventsController < ApplicationController
     end 
 
     def show
-        comments = map_event.comments
+        map_event = MapEvent.find(params[:id])
         render json: map_event, :include => [:users, :comments  => {:include => :user }]
     end 
 
@@ -17,9 +17,14 @@ class Api::V1::MapEventsController < ApplicationController
     end 
 
     def update
+        map_event = MapEvent.find(params[:id])
         map_event.update(map_event_params)
         render json: map_event, :include => [:users => {:include => :map_events}]
     end 
+
+    def find_map_event
+        map_event = MapEvent.find(params[:id])
+    end
 
     private
     
@@ -35,7 +40,5 @@ class Api::V1::MapEventsController < ApplicationController
         params.permit(:title)
     end 
 
-    def find_event
-        map_event = MapEvent.find(params[:id])
-    end
+
 end
