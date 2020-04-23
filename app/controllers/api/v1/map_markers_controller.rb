@@ -25,7 +25,8 @@ class Api::V1::MapMarkersController < ApplicationController
     
     def map_marker_params
         params.require(:map_marker)
-        .permit(:latitude,
+        .permit(
+            :latitude,
             :longitude,
             :title, 
             :address, 
