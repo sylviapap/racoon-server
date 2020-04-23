@@ -28,7 +28,8 @@ class Api::V1::MapMarkersController < ApplicationController
         .permit(:latitude,
             :longitude,
             :title, 
-            :address)
+            :address, 
+            :user_id)
     end 
 
     def query_params
