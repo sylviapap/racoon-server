@@ -7,24 +7,28 @@ class User < ApplicationRecord
 
     has_many :user_markers
     has_many :map_markers, through: :user_markers
+    
+    has_many :map_markers, inverse_of: 'creator'
 
 end
 
 # 
-# class Author < ApplicationRecord
+# class Author
 #     has_many :books, inverse_of: 'writer'
-#   end
+# end
    
-#   class Book < ApplicationRecord
+# class Book
 #     belongs_to :writer, class_name: 'Author', foreign_key: 'author_id'
-#   end
+# end
 
-# Bookmark 
-#  belongs_to :post
-#  belongs_to :user
 # User
-#  has_many :posts
-#  has_many :posts, :through => :bookmarks
+    # has_many :bookmarks
+    # has_many :posts, through: :bookmarks
+    # has_many :authored_posts, foreign_key: :author_id, class_name: 'Post'
+# Bookmark
+    # belongs_to :post
+    # belongs_to :user
 # Post
-#  belongs_to :user
-#  has_many :posts, :through => :bookmarks
+    # belongs_to :author, class_name: 'User'
+    # has_many :bookmarks
+    # has_many :users, through: :bookmarks
