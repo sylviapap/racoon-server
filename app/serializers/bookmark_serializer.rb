@@ -1,4 +1,4 @@
-class UserMarkerSerializer < ActiveModel::Serializer
+class BookmarkSerializer < ActiveModel::Serializer
   attributes :id
   belongs_to :user
   belongs_to :map_marker

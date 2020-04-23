@@ -1,6 +1,6 @@
 User.destroy_all
 MapMarker.destroy_all
-UserMarker.destroy_all
+Bookmark.destroy_all
 Comment.destroy_all
 
 5.times do
@@ -16,5 +16,5 @@ end
 end
 
 5.times do
-    UserMarker.create(user_id: User.all.sample.id, map_marker_id: MapMarker.all.sample.id)
+    Bookmark.create(user_id: User.all.sample.id, map_marker_id: MapMarker.all.sample.id)
 end
