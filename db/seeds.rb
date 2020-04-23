@@ -12,7 +12,7 @@ end
 end
 
 10.times do
-    Comment.create(content: Faker::Quote.yoda, user_id: User.all.sample.id, map_marker_id: MapMarker.all.sample.id)
+    Comment.create(content: Faker::Marketing.buzzwords, user_id: User.all.sample.id, map_marker_id: MapMarker.all.sample.id)
 end
 
 5.times do
