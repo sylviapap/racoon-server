@@ -2,6 +2,8 @@ class Api::V1::UsersController < ApplicationController
     before_action :find_user, only: [:update, :show, :destroy]
     # skip_before_action :authorized, only: [:create]
 
+    # profile might be unecessary - essentially same as auth controller show
+
     def profile
       render json: { user: UserSerializer.new(current_user, :include => [:map_markers]) }, status: :accepted
     end
