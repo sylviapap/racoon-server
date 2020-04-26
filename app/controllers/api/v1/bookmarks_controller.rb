@@ -9,7 +9,7 @@ class Api::V1::BookmarksController < ApplicationController
     end 
 
     def create
-        bookmark = Bookmark.create(bookmark_params)
+        bookmark = Bookmark.find_or_create_by(bookmark_params)
         render json: bookmark
     end 
 
