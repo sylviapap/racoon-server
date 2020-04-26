@@ -5,7 +5,7 @@ class Api::V1::UsersController < ApplicationController
     # profile might be unecessary - essentially same as auth controller show
 
     def profile
-      render json: { user: UserSerializer.new(current_user, :include => [:map_markers]) }, status: :accepted
+      render json: { user: UserSerializer.new(current_user) }, status: :accepted
     end
 
     def index
