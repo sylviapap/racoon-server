@@ -13,6 +13,11 @@ class Api::V1::BookmarksController < ApplicationController
         render json: bookmark
     end 
 
+    def destroy
+        bookmark = Bookmark.find(params[:id])
+        bookmark.destroy
+    end
+
     private
 
     def bookmark_params
