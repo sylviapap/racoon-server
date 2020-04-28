@@ -1,8 +1,9 @@
 class Api::V1::MapMarkersController < ApplicationController
+    skip_before_action :authorized, only: [:index, :show]
 
     def index
         map_markers = MapMarker.all
-        render json: map_markers
+        render json: map_markers, :include => [:users, :comments  => {:include => :user }]
     end 
 
     def show
