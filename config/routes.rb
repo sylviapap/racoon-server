@@ -9,8 +9,7 @@ Rails.application.routes.draw do
       resources :reported_symptoms
 
       post '/auth', to: 'auth#create'
-      get '/current_user', to: 'auth#show'
-      post '/profile', to: 'user#profile'
+      get '/profile', to: 'auth#show'
 
     end
   end

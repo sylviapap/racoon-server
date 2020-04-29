@@ -4,7 +4,8 @@ class MapMarkerSerializer < ActiveModel::Serializer
   :address, 
   :latitude, 
   :longitude,
-  :creator
+  :creator,
+  :message
   
   has_many :comments
   has_many :bookmarks

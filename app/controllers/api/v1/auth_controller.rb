@@ -14,11 +14,11 @@ class Api::V1::AuthController < ApplicationController
     end
     
     def show
-        if logged_in?
-          render json: { user: UserSerializer.new(current_user) }, status: :accepted
-        else
-          render json: {error: 'No user found'}, status: :unauthorized
-        end
+      if logged_in?
+        render json: { user: UserSerializer.new(current_user) }, status: :accepted
+      else
+        render json: {error: 'No user found'}, status: :unauthorized
+      end
     end
 
     private

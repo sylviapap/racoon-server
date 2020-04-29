@@ -35,7 +35,8 @@ class Api::V1::MapMarkersController < ApplicationController
             :longitude,
             :title, 
             :address, 
-            :user_id)
+            :user_id,
+            :message)
     end
 
 end
