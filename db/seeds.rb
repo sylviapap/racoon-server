@@ -1,13 +1,13 @@
 require 'rest-client'
 require 'json'
 
-headers = {"App-Id": ENV["INFERMEDICA_API_ID"], "App-Key": ENV["INFERMEDICA_API_KEY"], "Model": "infermedica-en", "Version": "v3"}
+# headers = {"App-Id": ENV["INFERMEDICA_API_ID"], "App-Key": ENV["INFERMEDICA_API_KEY"], "Model": "infermedica-en", "Version": "v3"}
 
-result = RestClient.get("https://api.infermedica.com/covid19/symptoms", headers=headers)
-symptoms_array = JSON.parse(result)
-symptoms = symptoms_array.each do |object|
-    Symptom.create()
-    end
+# result = RestClient.get("https://api.infermedica.com/covid19/symptoms", headers=headers)
+# symptoms_array = JSON.parse(result)
+# symptoms = symptoms_array.each do |object|
+#     Symptom.create()
+#     end
 
 User.destroy_all
 MapMarker.destroy_all
