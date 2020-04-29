@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :bookmarks
       resources :map_markers
       resources :comments
+      resources :symptoms
 
       post '/auth', to: 'auth#create'
       get '/current_user', to: 'auth#show'
