@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_29_165432) do
+ActiveRecord::Schema.define(version: 2020_04_29_170527) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,15 @@ ActiveRecord::Schema.define(version: 2020_04_29_165432) do
     t.index ["user_id"], name: "index_map_markers_on_user_id"
   end
 
+  create_table "reported_symptoms", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "symptom_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["symptom_id"], name: "index_reported_symptoms_on_symptom_id"
+    t.index ["user_id"], name: "index_reported_symptoms_on_user_id"
+  end
+
   create_table "symptoms", force: :cascade do |t|
     t.string "category"
     t.string "common_name"
@@ -72,4 +81,6 @@ ActiveRecord::Schema.define(version: 2020_04_29_165432) do
   add_foreign_key "comments", "map_markers"
   add_foreign_key "comments", "users"
   add_foreign_key "map_markers", "users"
+  add_foreign_key "reported_symptoms", "symptoms"
+  add_foreign_key "reported_symptoms", "users"
 end
