@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :map_markers
       resources :comments
       resources :symptoms
+      resources :reported_symptoms
 
       post '/auth', to: 'auth#create'
       get '/current_user', to: 'auth#show'
