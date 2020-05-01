@@ -4,4 +4,7 @@ class MapMarker < ApplicationRecord
     has_many :users, through: :bookmarks, dependent: :destroy
 
     belongs_to :creator, class_name: 'User', foreign_key: :user_id
+
+    validates :latitude, numericality: true
+    validates :longitude, numericality: true
 end
