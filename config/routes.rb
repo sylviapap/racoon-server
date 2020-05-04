@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       resources :comments
       resources :symptoms
       resources :reported_symptoms
+      resources :diagnoses
 
       post '/auth', to: 'auth#create'
       get '/current-user', to: 'auth#show'

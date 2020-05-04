@@ -8,6 +8,7 @@ class CreateSymptoms < ActiveRecord::Migration[6.0]
       t.string :question
       t.string :seriousness
       t.string :sex_filter
+      t.boolean :is_emergency, default: false
 
       t.timestamps
     end

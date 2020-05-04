@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_01_173748) do
+ActiveRecord::Schema.define(version: 7) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,25 +34,35 @@ ActiveRecord::Schema.define(version: 2020_05_01_173748) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "diagnoses", force: :cascade do |t|
+    t.string "description"
+    t.string "label"
+    t.string "triage_level"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_diagnoses_on_user_id"
+  end
+
   create_table "map_markers", force: :cascade do |t|
     t.float "latitude"
     t.float "longitude"
     t.string "title"
     t.string "address"
+    t.string "message"
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "user_id"
-    t.string "message"
     t.index ["user_id"], name: "index_map_markers_on_user_id"
   end
 
   create_table "reported_symptoms", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.bigint "diagnosis_id", null: false
     t.bigint "symptom_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["diagnosis_id"], name: "index_reported_symptoms_on_diagnosis_id"
     t.index ["symptom_id"], name: "index_reported_symptoms_on_symptom_id"
-    t.index ["user_id"], name: "index_reported_symptoms_on_user_id"
   end
 
   create_table "symptoms", force: :cascade do |t|
@@ -63,25 +73,26 @@ ActiveRecord::Schema.define(version: 2020_05_01_173748) do
     t.string "question"
     t.string "seriousness"
     t.string "sex_filter"
+    t.boolean "is_emergency", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "username"
+    t.string "first_name"
+    t.string "last_name"
     t.string "email"
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "first_name"
-    t.string "last_name"
   end
 
   add_foreign_key "bookmarks", "map_markers"
   add_foreign_key "bookmarks", "users"
   add_foreign_key "comments", "map_markers"
   add_foreign_key "comments", "users"
+  add_foreign_key "diagnoses", "users"
   add_foreign_key "map_markers", "users"
+  add_foreign_key "reported_symptoms", "diagnoses"
   add_foreign_key "reported_symptoms", "symptoms"
-  add_foreign_key "reported_symptoms", "users"
 end
