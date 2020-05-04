@@ -9,7 +9,7 @@ class Api::V1::AuthController < ApplicationController
     
           render json: {user: UserSerializer.new(user), token: my_token}, status: :accepted
         else
-          render json: {error: 'User could not be logged in'}, status: :unauthorized
+          render json: {error: 'User could not be logged in. Please enter the correct email and password, or sign up to create a new account'}, status: :unauthorized
         end
     end
     
@@ -17,7 +17,7 @@ class Api::V1::AuthController < ApplicationController
       if logged_in?
         render json: { user: UserSerializer.new(current_user) }, status: :accepted
       else
-        render json: {error: 'No user found'}, status: :unauthorized
+        render json: {error: 'Not logged in'}, status: :unauthorized
       end
     end
 
