@@ -28,6 +28,7 @@ class Api::V1::DiagnosesController < ApplicationController
       :description,
       :label,
       :triage_level, 
-      :user_id)
+      :user_id,
+      :reported_symptoms)
   end
 end
