@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_05_012101) do
+ActiveRecord::Schema.define(version: 7) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,10 +57,10 @@ ActiveRecord::Schema.define(version: 2020_05_05_012101) do
   end
 
   create_table "reported_symptoms", force: :cascade do |t|
+    t.bigint "user_id"
     t.bigint "symptom_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "user_id"
     t.index ["symptom_id"], name: "index_reported_symptoms_on_symptom_id"
     t.index ["user_id"], name: "index_reported_symptoms_on_user_id"
   end
@@ -82,11 +82,11 @@ ActiveRecord::Schema.define(version: 2020_05_05_012101) do
     t.string "first_name"
     t.string "last_name"
     t.string "email"
+    t.string "sex"
+    t.integer "age"
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "sex"
-    t.integer "age"
   end
 
   add_foreign_key "bookmarks", "map_markers"
