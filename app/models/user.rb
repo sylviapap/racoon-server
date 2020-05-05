@@ -18,5 +18,7 @@ class User < ApplicationRecord
 
     has_many :diagnoses, dependent: :destroy
     has_many :reported_symptoms, dependent: :destroy
+    has_many :symptoms, through: :reported_symptoms, dependent: :destroy
+
 
 end

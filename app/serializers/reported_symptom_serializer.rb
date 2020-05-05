@@ -1,5 +1,5 @@
 class ReportedSymptomSerializer < ActiveModel::Serializer
-  attributes :id, :user_id, :symptom_id
+  attributes :id, :user, :symptom
   has_one :user
   has_one :symptom
 end

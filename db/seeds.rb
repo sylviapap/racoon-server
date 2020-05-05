@@ -23,6 +23,7 @@ User.destroy_all
 MapMarker.destroy_all
 Comment.destroy_all
 ReportedSymptom.destroy_all
+Diagnosis.destroy_all
 
 5.times do
     User.create(first_name: Faker::Name.first_name, password: "password", password_confirmation: "password", email: Faker::Internet.email)
@@ -34,6 +35,10 @@ end
 
 10.times do
     Comment.create(content: "this is an example comment", user: User.all.sample, map_marker: MapMarker.all.sample)
+end
+
+10.times do
+    ReportedSymptom.create(user: User.all.sample, symptom: Symptom.all.sample)
 end
 
 Diagnosis.create(description: "Your symptoms are very serious and you may have COVID-19.", label: "Call the emergency number. Avoid all contact.", triage_level: "isolation_ambulance", user: User.all.first)
