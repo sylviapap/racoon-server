@@ -1,4 +1,4 @@
 class DiagnosisSerializer < ActiveModel::Serializer
-  attributes :id, :description, :label, :triage_level, :reported_symptoms, :user
+  attributes :id, :description, :label, :triage_level, :user
   has_one :user
 end

@@ -6,5 +6,5 @@ class UserSerializer < ActiveModel::Serializer
   has_many :created_markers
   
   has_many :diagnoses
-  has_many :reported_symptoms, through: :diagnosis
+  has_many :reported_symptoms
 end

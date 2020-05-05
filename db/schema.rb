@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 7) do
+ActiveRecord::Schema.define(version: 2020_05_05_012101) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,12 +57,12 @@ ActiveRecord::Schema.define(version: 7) do
   end
 
   create_table "reported_symptoms", force: :cascade do |t|
-    t.bigint "diagnosis_id", null: false
     t.bigint "symptom_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["diagnosis_id"], name: "index_reported_symptoms_on_diagnosis_id"
+    t.bigint "user_id"
     t.index ["symptom_id"], name: "index_reported_symptoms_on_symptom_id"
+    t.index ["user_id"], name: "index_reported_symptoms_on_user_id"
   end
 
   create_table "symptoms", force: :cascade do |t|
@@ -85,6 +85,8 @@ ActiveRecord::Schema.define(version: 7) do
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "sex"
+    t.integer "age"
   end
 
   add_foreign_key "bookmarks", "map_markers"
@@ -93,6 +95,6 @@ ActiveRecord::Schema.define(version: 7) do
   add_foreign_key "comments", "users"
   add_foreign_key "diagnoses", "users"
   add_foreign_key "map_markers", "users"
-  add_foreign_key "reported_symptoms", "diagnoses"
   add_foreign_key "reported_symptoms", "symptoms"
+  add_foreign_key "reported_symptoms", "users"
 end

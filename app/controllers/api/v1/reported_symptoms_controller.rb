@@ -1,6 +1,6 @@
 class Api::V1::ReportedSymptomsController < ApplicationController
   def index
-    reported_symptoms = ReportedSymptom.where(params[:diagnosis_id])
+    reported_symptoms = ReportedSymptom.where(params[:user_id])
     render json: reported_symptoms
   end 
 
@@ -21,6 +21,6 @@ class Api::V1::ReportedSymptomsController < ApplicationController
   private
 
   def reported_symptom_params
-    params.permit(:diagnosis_id, :symptom_id)
+    params.permit(:symptom_id, :user_id)
   end
 end

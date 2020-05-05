@@ -17,6 +17,6 @@ class User < ApplicationRecord
     has_many :created_markers, class_name: 'MapMarker', inverse_of: 'creator', dependent: :destroy
 
     has_many :diagnoses, dependent: :destroy
-    has_many :reported_symptoms, through: :diagnoses, dependent: :destroy
+    has_many :reported_symptoms, dependent: :destroy
 
 end

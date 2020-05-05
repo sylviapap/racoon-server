@@ -22,6 +22,7 @@ require 'dotenv-rails'
 User.destroy_all
 MapMarker.destroy_all
 Comment.destroy_all
+ReportedSymptom.destroy_all
 
 5.times do
     User.create(first_name: Faker::Name.first_name, password: "password", password_confirmation: "password", email: Faker::Internet.email)
@@ -36,5 +37,3 @@ end
 end
 
 Diagnosis.create(description: "Your symptoms are very serious and you may have COVID-19.", label: "Call the emergency number. Avoid all contact.", triage_level: "isolation_ambulance", user: User.all.first)
-
-ReportedSymptom.create(diagnosis: Diagnosis.all.first, symptom: Symptom.all.first)
