@@ -8,7 +8,7 @@ class Api::V1::MapMarkersController < ApplicationController
 
     def show
         map_marker = MapMarker.find(params[:id])
-        render json: map_marker, :include => [:users, :comments  => {:include => :user }]
+        render json: map_marker, :include => [:users, :comments  => {:include => :user }, :creator  => {:include => :symptoms }]
     end 
 
     def create
