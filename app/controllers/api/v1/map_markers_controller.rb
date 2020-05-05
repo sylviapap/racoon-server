@@ -3,7 +3,7 @@ class Api::V1::MapMarkersController < ApplicationController
 
     def index
         map_markers = MapMarker.all
-        render json: map_markers, :include => [:users, :comments  => {:include => :user }]
+        render json: map_markers, :include => [:users, :comments  => {:include => :user }, :creator  => {:include => :symptoms }]
     end 
 
     def show
