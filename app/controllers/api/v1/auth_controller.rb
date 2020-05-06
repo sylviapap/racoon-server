@@ -1,29 +1,31 @@
 class Api::V1::AuthController < ApplicationController
-    skip_before_action :authorized, only: [:create]
+  skip_before_action :authorized, only: [:create]
 
-    def create
-        user = User.find_by(email: user_login_params[:email])
-        
-        if user && user.authenticate(user_login_params[:password])
-          my_token = issue_token(user)
+  def create
+    user = User.find_by(email: user_login_params[:email])
     
-          render json: {user: UserSerializer.new(user), token: my_token}, status: :accepted
-        else
-          render json: {error: 'User could not be logged in. Please enter the correct email and password, or sign up to create a new account'}, status: :unauthorized
-        end
-    end
-    
-    def show
-      if logged_in?
-        render json: { user: UserSerializer.new(current_user) }, status: :accepted
-      else
-        render json: {error: 'Not logged in'}, status: :unauthorized
-      end
-    end
+    if user && user.authenticate(user_login_params[:password])
+      my_token = issue_token(user)
 
-    private
- 
-    def user_login_params
-      params.require(:user).permit(:email, :password)
+      render json: {user: UserSerializer.new(user), token: my_token}, status: :accepted
+    else
+      render json: {error: 'User could not be logged in. Please enter the correct email and password, or sign up to create a new account'}, status: :unauthorized
     end
+  end
+  
+  def show
+    options = {}
+    options[:include] = [:bookmarks, :'bookmarks.map_marker']
+    if logged_in?
+      render json: { user: UserSerializer.new([current_user], options) }, status: :accepted
+    else
+      render json: {error: 'Not logged in'}, status: :unauthorized
+    end
+  end
+
+  private
+
+  def user_login_params
+    params.require(:user).permit(:email, :password)
+  end
 end

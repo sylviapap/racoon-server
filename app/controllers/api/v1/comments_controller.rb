@@ -1,12 +1,11 @@
-class Api::V1::CommentsController < ApplicationController
-    before_action :find_comment, only: [:show, :destroy]
-    
+class Api::V1::CommentsController < ApplicationController    
     def index
-        comments = Comment.all 
+        comments = Comment.where(params[:map_marker_id]) 
         render json: comments
     end 
 
     def show
+        comment = Comment.find(params[:id])
         render json: comment
     end 
 
@@ -15,16 +14,9 @@ class Api::V1::CommentsController < ApplicationController
         render json: comment
     end 
 
-    def destroy
-    end 
-
     private
 
     def comment_params
         params.permit(:content, :user_id, :map_marker_id)
     end 
-
-    def find_comment
-        comment = Comment.find(params[:id])
-    end
 end

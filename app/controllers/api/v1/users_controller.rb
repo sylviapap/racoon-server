@@ -2,17 +2,14 @@ class Api::V1::UsersController < ApplicationController
     before_action :find_user, only: [:update, :show, :destroy]
     skip_before_action :authorized, only: [:create]
 
-    def index
-      @users = User.all
-      render json: @users
-    end
+    # def index
+    #   @users = User.all
+    #   render json: @users
+    # end
 
     def show
       @user = User.find(params[:id])
       render json: @user
-    end
-  
-    def new
     end
   
     def create
@@ -23,9 +20,6 @@ class Api::V1::UsersController < ApplicationController
       else
         render json: { errors: @user.errors.full_messages }, status: :not_acceptable
       end
-    end
-
-    def edit
     end
   
     def update
@@ -44,7 +38,7 @@ class Api::V1::UsersController < ApplicationController
     private
   
     def user_params
-      params.permit(:password, :password_confirmation, :first_name, :last_name, :email)
+      params.permit(:password, :password_confirmation, :first_name, :last_name, :email, :sex, :age)
     end
   
     def find_user

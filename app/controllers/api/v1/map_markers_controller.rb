@@ -3,12 +3,12 @@ class Api::V1::MapMarkersController < ApplicationController
 
     def index
         map_markers = MapMarker.all
-        render json: map_markers, :include => [:users, :comments  => {:include => :user }, :creator  => {:include => :symptoms }]
+        render json: map_markers, :include => [:comments  => {:include => :user }, :creator  => {:include => :symptoms }]
     end 
 
     def show
         map_marker = MapMarker.find(params[:id])
-        render json: map_marker, :include => [:users, :comments  => {:include => :user }, :creator  => {:include => :symptoms }]
+        render json: map_marker, :include => [:comments  => {:include => :user }, :creator  => {:include => :symptoms }]
     end 
 
     def create
@@ -16,11 +16,11 @@ class Api::V1::MapMarkersController < ApplicationController
         render json: map_marker
     end 
 
-    def update
-        map_marker = MapMarker.find(params[:id])
-        map_marker.update(map_marker_params)
-        render json: map_marker, :include => [:users => {:include => :map_markers}]
-    end
+    # def update
+    #     map_marker = MapMarker.find(params[:id])
+    #     map_marker.update(map_marker_params)
+    #     render json: map_marker, :include => [:users => {:include => :map_markers}]
+    # end
 
     def destroy
         map_marker = MapMarker.find(params[:id])

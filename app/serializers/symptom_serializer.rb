@@ -1,4 +1,6 @@
-class SymptomSerializer < ActiveModel::Serializer
+class SymptomSerializer
+  include FastJsonapi::ObjectSerializer
+
   attributes :id,
   :category,
   :common_name,
@@ -7,4 +9,6 @@ class SymptomSerializer < ActiveModel::Serializer
   :question,
   :seriousness,
   :sex_filter
+
+  has_many :reported_symptoms
 end

@@ -1,8 +1,13 @@
 class Api::V1::DiagnosesController < ApplicationController
   
+  def index
+    diagnoses = Diagnosis.where(params[:user_id])
+    render json: diagnoses
+  end
+
   def show
     diagnosis = Diagnosis.find(params[:id])
-    render json: diagnosis, :include => [:user]
+    render json: diagnosis
   end 
 
   def create
@@ -10,11 +15,11 @@ class Api::V1::DiagnosesController < ApplicationController
     render json: diagnosis
   end 
 
-  def update
-    diagnosis = Diagnosis.find(params[:id])
-    diagnosis.update(diagnosis_params)
-    render json: diagnosis, :include => [:user]
-  end
+  # def update
+  #   diagnosis = Diagnosis.find(params[:id])
+  #   diagnosis.update(diagnosis_params)
+  #   render json: diagnosis, :include => [:user]
+  # end
 
   def destroy
     diagnosis = Diagnosis.find(params[:id])

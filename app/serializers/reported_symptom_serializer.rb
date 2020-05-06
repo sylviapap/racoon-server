@@ -1,5 +1,7 @@
-class ReportedSymptomSerializer < ActiveModel::Serializer
-  attributes :id, :user, :symptom
-  has_one :user
-  has_one :symptom
+class ReportedSymptomSerializer
+  include FastJsonapi::ObjectSerializer
+
+  attribute :id
+  belongs_to :user
+  belongs_to :symptom
 end
