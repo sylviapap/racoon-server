@@ -1,5 +1,5 @@
 class Api::V1::MapMarkersController < ApplicationController
-    skip_before_action :authorized, only: [:index, :show]
+    skip_before_action :authorized, only: [:index]
 
     def index
         map_markers = MapMarker.all
@@ -12,21 +12,10 @@ class Api::V1::MapMarkersController < ApplicationController
         # { fields: { movie: [:name] } }
     end 
 
-    def show
-        map_marker = MapMarker.find(params[:id])
-        render json: map_marker, :include => [:users, :comments  => {:include => :user }, :creator  => {:include => :symptoms }]
-    end 
-
     def create
         map_marker = MapMarker.create(map_marker_params)
         render json: map_marker
     end 
-
-    def update
-        map_marker = MapMarker.find(params[:id])
-        map_marker.update(map_marker_params)
-        render json: map_marker, :include => [:users => {:include => :map_markers}]
-    end
 
     def destroy
         map_marker = MapMarker.find(params[:id])
@@ -44,5 +33,4 @@ class Api::V1::MapMarkersController < ApplicationController
             :user_id,
             :message)
     end
-
 end

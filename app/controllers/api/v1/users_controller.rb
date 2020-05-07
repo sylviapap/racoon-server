@@ -1,45 +1,36 @@
 class Api::V1::UsersController < ApplicationController
-    before_action :find_user, only: [:update, :show, :destroy]
+    before_action :find_user, only: [:show]
     skip_before_action :authorized, only: [:create]
 
-    def index
-      @users = User.all
-      render json: @users
-    end
-
     def show
-      @user = User.find(params[:id])
-      render json: @user
-    end
-  
-    def new
+      user = User.find(params[:id])
+      render json: user
     end
   
     def create
-      @user = User.create(user_params)
-      if @user.valid?
-        @token = issue_token(@user)
-        render json: { user: UserSerializer.new(@user), token: @token }, status: :created
+      user = User.create(user_params)
+      if user.valid?
+        token = issue_token(user)
+        render json: { user: UserSerializer.new(user), token: token }, status: :created
       else
-        render json: { errors: @user.errors.full_messages }, status: :not_acceptable
+        render json: { errors: user.errors.full_messages }, status: :not_acceptable
       end
-    end
-
-    def edit
     end
   
-    def update
-      @user.update(user_params)
-      if @user.save
-        render json: @user, status: :accepted
-      else
-        render json: { errors: @user.errors.full_messages }, status: :unprocessible_entity
-      end
-    end
+    # def update
+    # user = User.find(params[:id])
+    #   user.update(user_params)
+    #   if user.save
+    #     render json: user, status: :accepted
+    #   else
+    #     render json: { errors: user.errors.full_messages }, status: :unprocessible_entity
+    #   end
+    # end
 
-    def destroy
-      @user.destroy
-    end
+    # def destroy
+    # user = User.find(params[:id])
+    #   user.destroy
+    # end
   
     private
   
@@ -48,6 +39,6 @@ class Api::V1::UsersController < ApplicationController
     end
   
     def find_user
-      @user = User.find(params[:id])
+      user = User.find(params[:id])
     end
 end
