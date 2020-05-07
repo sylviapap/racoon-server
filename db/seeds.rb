@@ -25,8 +25,9 @@ Comment.destroy_all
 ReportedSymptom.destroy_all
 Diagnosis.destroy_all
 
-10.times do
-    User.create(first_name: Faker::Name.first_name, last_name: "test_user", password: "password", password_confirmation: "password", email: Faker::Internet.email)
+20.times do
+    user = User.create(first_name: Faker::Name.first_name, last_name: "test_user", password: "password", password_confirmation: "password", email: Faker::Internet.email)
+    ReportedSymptom.create(user: user, symptom: Symptom.all.sample) 
 end
 
 cities = [
