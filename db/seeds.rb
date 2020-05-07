@@ -4,20 +4,20 @@ require 'dotenv-rails'
 
 # Symptom seed comes from Infermedica API - do once when reset/creating db but then comment out so you don't have to re-request to the API
 
-APIheaders = {"App-Id" => "#{ENV["INFERMEDICA_APP_ID"]}", "App-Key" => "#{ENV["INFERMEDICA_APP_KEY"]}"}
+# APIheaders = {"App-Id" => "#{ENV["INFERMEDICA_APP_ID"]}", "App-Key" => "#{ENV["INFERMEDICA_APP_KEY"]}"}
 
-result = RestClient.get("https://api.infermedica.com/covid19/symptoms", headers=APIheaders)
-symptoms_array = JSON.parse(result)
-symptoms_array.each do |object|
-    Symptom.find_or_create_by(
-        category: object["category"],
-        common_name: object["common_name"],
-        infermedica_id: object["id"],
-        name: object["name"],
-        question: object["question"],
-        seriousness: object["seriousness"],
-        sex_filter: object["sex_filter"])
-    end
+# result = RestClient.get("https://api.infermedica.com/covid19/symptoms", headers=APIheaders)
+# symptoms_array = JSON.parse(result)
+# symptoms_array.each do |object|
+#     Symptom.find_or_create_by(
+#         category: object["category"],
+#         common_name: object["common_name"],
+#         infermedica_id: object["id"],
+#         name: object["name"],
+#         question: object["question"],
+#         seriousness: object["seriousness"],
+#         sex_filter: object["sex_filter"])
+#     end
 
 User.destroy_all
 MapMarker.destroy_all
