@@ -8,12 +8,13 @@ class MapMarkerSerializer < ActiveModel::Serializer
   :longitude,
   :creator,
   :message,
+  :comments
   :created_at
 
-  has_many :comments
-  has_many :bookmarks
-  has_many :users, through: :bookmarks
-  belongs_to :creator
+  # has_many :comments
+  # has_many :bookmarks
+  # has_many :users, through: :bookmarks
+  # belongs_to :creator
   
   # belongs_to :creator, record_type: :user
   # belongs_to :user
