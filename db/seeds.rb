@@ -4,20 +4,20 @@ require 'dotenv-rails'
 
 # Symptom seed comes from Infermedica API - do once when reset/creating db but then comment out so you don't have to re-request to the API
 
-APIheaders = {"App-Id" => "#{ENV["INFERMEDICA_APP_ID"]}", "App-Key" => "#{ENV["INFERMEDICA_APP_KEY"]}"}
+# APIheaders = {"App-Id" => "#{ENV["INFERMEDICA_APP_ID"]}", "App-Key" => "#{ENV["INFERMEDICA_APP_KEY"]}"}
 
-result = RestClient.get("https://api.infermedica.com/covid19/symptoms", headers=APIheaders)
-symptoms_array = JSON.parse(result)
-symptoms_array.each do |object|
-    Symptom.create(
-        category: object["category"],
-        common_name: object["common_name"],
-        infermedica_id: object["id"],
-        name: object["name"],
-        question: object["question"],
-        seriousness: object["seriousness"],
-        sex_filter: object["sex_filter"])
-    end
+# result = RestClient.get("https://api.infermedica.com/covid19/symptoms", headers=APIheaders)
+# symptoms_array = JSON.parse(result)
+# symptoms_array.each do |object|
+#     Symptom.find_or_create_by(
+#         category: object["category"],
+#         common_name: object["common_name"],
+#         infermedica_id: object["id"],
+#         name: object["name"],
+#         question: object["question"],
+#         seriousness: object["seriousness"],
+#         sex_filter: object["sex_filter"])
+#     end
 
 User.destroy_all
 MapMarker.destroy_all
@@ -25,20 +25,32 @@ Comment.destroy_all
 ReportedSymptom.destroy_all
 Diagnosis.destroy_all
 
-5.times do
-    User.create(first_name: Faker::Name.first_name, password: "password", password_confirmation: "password", email: Faker::Internet.email)
+10.times do
+    User.create(first_name: Faker::Name.first_name, last_name: "test_user", password: "password", password_confirmation: "password", email: Faker::Internet.email)
 end
 
-10.times do
-    MapMarker.create(latitude: Faker::Address.latitude, longitude: Faker::Address.longitude, address: Faker::Address.street_address, title: "Example", message: "Example message", creator: User.all.sample)
+cities = [
+    {title: "New York", latitude: 40.7128, longitude: -74.0060},
+    {title: "Chicago", latitude: 41.8781, longitude: -87.6298},
+    {title: "Tokyo", latitude: 35.6804, longitude: 139.7690},
+    {title: "Cairo", latitude: 30.0444, longitude: 31.2357},
+    {title: "Paris", latitude: 48.8566, longitude: 2.3522},
+    {title: "Sao Paolo", latitude: -23.5505, longitude: -46.6333},
+    {title: "Sydney", latitude: -33.8688, longitude: 151.2093},
+    {title: "Toronto", latitude: 43.6532, longitude: -79.3832},
+    {title: "Mexico City", latitude: 19.4326, longitude: -99.1332},
+    {title: "Moscow", latitude: 55.7558, longitude: 37.6173}
+]
+
+cities.each do |city|
+    MapMarker.create(latitude: city[:latitude], longitude: city[:longitude], address: Faker::Address.street_address, title: "Example post near #{city[:title]}", message: "Example message", creator: User.all.sample)
 end
+
 
 20.times do
-    Comment.create(content: "This is an example comment", user: User.all.sample, map_marker: MapMarker.all.sample)
+    Comment.create(content: "Example comment", user: User.all.sample, map_marker: MapMarker.all.sample)
 end
 
 20.times do
     ReportedSymptom.create(user: User.all.sample, symptom: Symptom.all.sample)
 end
-
-Diagnosis.create(description: "Your symptoms are very serious and you may have COVID-19.", label: "Call the emergency number. Avoid all contact.", triage_level: "isolation_ambulance", user: User.all.first)
