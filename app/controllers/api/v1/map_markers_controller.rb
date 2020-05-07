@@ -2,8 +2,9 @@ class Api::V1::MapMarkersController < ApplicationController
 	skip_before_action :authorized, only: [:index]
 
 	def index
-		map_markers = MapMarker.includes(:users)
-		render json: map_markers, :include => [:users, :comments  => {:include => :user }, :creator  => {:include => :symptoms }]
+		map_markers = MapMarker.includes(:creator)
+		render json: map_markers, :include => [:comments  => {:include => :user }, :creator => {:include => :symptoms } ]
+		
 	end 
 
 	def create
