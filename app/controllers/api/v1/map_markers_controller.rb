@@ -4,6 +4,12 @@ class Api::V1::MapMarkersController < ApplicationController
     def index
         map_markers = MapMarker.all
         render json: map_markers, :include => [:users, :comments  => {:include => :user }, :creator  => {:include => :symptoms }]
+        # options = {}
+        # options[:include] = [:user]
+        # render json: MapMarkerSerializer.new([map_markers, map_markers], options)
+        # render json: MapMarkerSerializer.new(map_markers)
+
+        # { fields: { movie: [:name] } }
     end 
 
     def show
