@@ -11,10 +11,10 @@ class MapMarkerSerializer < ActiveModel::Serializer
   :comments
   :created_at
 
-  # other associations not necessary but definitely need this one for :symptoms to show
+  # definitely need these associations
   belongs_to :creator
+  has_many :comments
 
-  # has_many :comments
   # has_many :bookmarks
   # has_many :users, through: :bookmarks
   
