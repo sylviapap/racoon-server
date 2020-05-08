@@ -7,7 +7,7 @@ class Api::V1::AuthController < ApplicationController
         if user && user.authenticate(user_login_params[:password])
           my_token = issue_token(user)
     
-          render json: {user: UserSerializer.new(user), token: my_token}, status: :accepted
+          render json: {user: UserSerializer.new(user, :include => [:map_markers]), token: my_token}, status: :accepted
         else
           render json: {error: 'User could not be logged in. Please enter the correct email and password, or sign up to create a new account'}, status: :unauthorized
         end
@@ -15,7 +15,7 @@ class Api::V1::AuthController < ApplicationController
     
     def show
       if logged_in?
-        render json: { user: UserSerializer.new(current_user) }, status: :accepted
+        render json: { user: UserSerializer.new(current_user, :include => [:map_markers]) }, status: :accepted
       else
         render json: {error: 'Not logged in'}, status: :unauthorized
       end

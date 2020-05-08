@@ -27,7 +27,9 @@ Diagnosis.destroy_all
 
 20.times do
     user = User.create(first_name: Faker::Name.first_name, last_name: "test_user", password: "password", password_confirmation: "password", email: Faker::Internet.email)
-    ReportedSymptom.create(user: user, symptom: Symptom.all.sample) 
+    3.times do 
+        ReportedSymptom.create(user: user, symptom: Symptom.all.sample)
+    end
 end
 
 cities = [
@@ -44,14 +46,9 @@ cities = [
 ]
 
 cities.each do |city|
-    MapMarker.create(latitude: city[:latitude], longitude: city[:longitude], address: Faker::Address.street_address, title: "Example post near #{city[:title]}", message: "Example message", creator: User.all.sample)
+    MapMarker.create(latitude: city[:latitude], longitude: city[:longitude], title: "[Example] #{city[:title]}", address: Faker::Address.street_address, message: "Example message", creator: User.all.sample)
 end
-
 
 20.times do
     Comment.create(content: "Example comment", user: User.all.sample, map_marker: MapMarker.all.sample)
-end
-
-20.times do
-    ReportedSymptom.create(user: User.all.sample, symptom: Symptom.all.sample)
 end

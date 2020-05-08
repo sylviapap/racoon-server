@@ -1,6 +1,4 @@
 class MapMarkerSerializer < ActiveModel::Serializer
-  # include FastJsonapi::ObjectSerializer
-
   attributes :id, 
   :title, 
   :address, 
@@ -8,15 +6,14 @@ class MapMarkerSerializer < ActiveModel::Serializer
   :longitude,
   :creator,
   :message,
-  :comments
+  :comments,
   :created_at
 
-  # definitely need these associations
+  # definitely need these 2 associations
   has_one :creator
   has_many :comments
 
-  has_many :bookmarks
-  has_many :users, through: :bookmarks
+  has_many :users
   
   # belongs_to :creator, record_type: :user
   # belongs_to :user

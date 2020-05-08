@@ -13,7 +13,7 @@ gem "bundler"
 gem "rest-client"
 gem "json"
 gem "dotenv-rails"
-gem 'fast_jsonapi'
+# gem 'fast_jsonapi'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.2'
