@@ -15,8 +15,8 @@ class MapMarkerSerializer < ActiveModel::Serializer
   has_one :creator
   has_many :comments
 
-  # has_many :bookmarks
-  # has_many :users, through: :bookmarks
+  has_many :bookmarks
+  has_many :users, through: :bookmarks
   
   # belongs_to :creator, record_type: :user
   # belongs_to :user

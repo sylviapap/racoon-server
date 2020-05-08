@@ -7,4 +7,7 @@ class SymptomSerializer < ActiveModel::Serializer
   :question,
   :seriousness,
   :sex_filter
+
+  has_many :reported_symptoms
+
 end
