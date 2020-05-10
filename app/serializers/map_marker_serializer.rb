@@ -10,7 +10,7 @@ class MapMarkerSerializer < ActiveModel::Serializer
   :created_at
 
   # definitely need these 2 associations
-  has_one :creator
+  has_one :creator, serializer: CreatorSerializer
   has_many :comments
 
   has_many :users
