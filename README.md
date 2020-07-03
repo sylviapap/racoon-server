@@ -1,24 +1,28 @@
-# README
+# R-A-C-O-O-N
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is the backend/API repo for my Flatiron School final project.
 
-Things you may want to cover:
+See live site here: https://racoon.digital (or https://racoon-app.netlify.app/)
 
-* Ruby version
+Frontend repo: https://github.com/sylviapap/final-project-client
 
-* System dependencies
+# Tech used
 
-* Configuration
+### Backend
 
-* Database creation
+* Ruby on Rails
+* Active Model Serializers
+* bcrypt
+* rest-client
+* faker
+* dotenv
 
-* Database initialization
+### Frontend
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* React.js
+* Redux
+* Thunk
+* Google Maps API
+* Infermedica API
+* HTML/CSS (no libraries or frameworks)
+* JSON web tokens
