@@ -1,12 +1,15 @@
 # R-A-C-O-O-N
+*Anagram of 'Corona'* 
 
-This is the backend/API repo for my Flatiron School final project.
+COVID-19 symptom checker/self report map web application
 
-See live site here: https://racoon.digital (or https://racoon-app.netlify.app/)
+This is the backend code for my Flatiron School final project.
 
-Frontend repo: https://github.com/sylviapap/final-project-client
+## Live Site
 
-# Tech used
+https://racoon.digital (or https://racoon-app.netlify.app/)
+
+# Tech
 
 ### Backend
 
@@ -16,13 +19,24 @@ Frontend repo: https://github.com/sylviapap/final-project-client
 * rest-client
 * faker
 * dotenv
+* Hosted on Heroku
 
 ### Frontend
+
+https://github.com/sylviapap/final-project-client
 
 * React.js
 * Redux
 * Thunk
+* react-router
 * Google Maps API
-* Infermedica API
+* google-maps-react
+* Infermedica API/symptom checking algorithms
 * HTML/CSS (no libraries or frameworks)
 * JSON web tokens
+* react-mic
+* HTML5 geolocation
+* Web Audio API
+* COVID-19 data API
+* [Create React App](https://github.com/facebook/create-react-app)
+* Hosted on Netlify using continuous deployment
