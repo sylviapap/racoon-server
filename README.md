@@ -19,7 +19,7 @@ This is the backend code for my Flatiron School final project.
 
 ### Frontend
 
-https://github.com/sylviapap/final-project-client
+https://github.com/sylviapap/racoon-client
 
 * React.js
 * Redux
