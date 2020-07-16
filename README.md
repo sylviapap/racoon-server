@@ -5,7 +5,7 @@ COVID-19 symptom checker/self report map web application
 
 This is the backend code for my Flatiron School final project.
 
-## Live Site: https://racoon.digital
+### Live Site: https://racoon.digital
 
 ### Backend
 
