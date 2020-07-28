@@ -7,6 +7,8 @@ This is the backend code for my Flatiron School final project.
 
 ### Live Site: https://racoon.digital
 
+### [Video Demo](https://youtu.be/SntYf3koT1c)
+
 ### Backend
 
 * Ruby on Rails
