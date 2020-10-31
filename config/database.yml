@@ -6,7 +6,7 @@ default: &default
 development:
   <<: *default
   database: racoon_server_development
-  #username: final_project_server
+  #username: racoon_server
   #password:
   #host: localhost
   #port: 5432
@@ -17,7 +17,7 @@ test:
 
 production:
   <<: *default
-  database: final_project_server_production
-  username: final_project_server
-  password: <%= ENV['FINAL_PROJECT_SERVER_DATABASE_PASSWORD'] %>
+  database: racoon_server_production
+  username: racoon_server
+  password: <%= ENV['RACOON_SERVER_DATABASE_PASSWORD'] %>
   #     url: <%= ENV['DATABASE_URL'] %>
