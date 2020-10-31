@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 7) do
+ActiveRecord::Schema.define(version: 2020_10_31_012458) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,7 +48,6 @@ ActiveRecord::Schema.define(version: 7) do
     t.float "latitude"
     t.float "longitude"
     t.string "title"
-    t.string "address"
     t.string "message"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -66,13 +65,8 @@ ActiveRecord::Schema.define(version: 7) do
   end
 
   create_table "symptoms", force: :cascade do |t|
-    t.string "category"
-    t.string "common_name"
-    t.string "infermedica_id"
     t.string "name"
-    t.string "question"
     t.string "seriousness"
-    t.string "sex_filter"
     t.boolean "is_emergency", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
