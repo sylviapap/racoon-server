@@ -4,8 +4,6 @@ class Api::V1::MapMarkersController < ApplicationController
 	def index
 		map_markers = MapMarker.includes(:creator)
 		render json: map_markers, :include => [:comments  => {:include => :user }, :creator => {:include => :symptoms } ]
-
-		# render json: map_markers.as_json(include: [creator: { include: [:symptoms], only: [:symptoms]}, comments: {include: [user: { only: [:first_name]}]} ])
 	end 
 
 	def create
@@ -25,7 +23,6 @@ class Api::V1::MapMarkersController < ApplicationController
 			:latitude,
 			:longitude,
 			:title, 
-			:address, 
 			:user_id,
 			:message)
 	end
