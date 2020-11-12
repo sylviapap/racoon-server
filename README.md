@@ -1,5 +1,4 @@
-# R-A-C-O-O-N
-*Anagram of 'Corona'* 
+# Racoon - *Anagram of Corona* 
 
 COVID-19 symptom checker/self report map web application
 
@@ -21,7 +20,7 @@ This is the backend code for my Flatiron School final project.
 
 ### Frontend
 
-https://github.com/sylviapap/racoon-client
+https://github.com/sylviapap/racoon-frontend
 
 * React.js
 * Redux
