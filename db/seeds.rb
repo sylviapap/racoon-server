@@ -1,10 +1,3 @@
-# require 'rest-client'
-# require 'json'
-# require 'dotenv-rails'
-# APIheaders = {"App-Id" => "#{ENV["INFERMEDICA_APP_ID"]}", "App-Key" => "#{ENV["INFERMEDICA_APP_KEY"]}"}
-# result = RestClient.get("https://api.infermedica.com/covid19/symptoms", headers=APIheaders)
-# symptoms_array = JSON.parse(result)
-
 [
 	{name: "Fever", seriousness: "serious"},
 	{name: "Cough", seriousness: "serious"},
